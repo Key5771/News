@@ -16,6 +16,8 @@
 		EAA9CFD024205E6500D29BB8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAA9CFCE24205E6500D29BB8 /* LaunchScreen.storyboard */; };
 		EAA9CFDE2420A7F200D29BB8 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA9CFDD2420A7F200D29BB8 /* ListTableViewCell.swift */; };
 		EAA9CFE02420AADA00D29BB8 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA9CFDF2420AADA00D29BB8 /* LaunchViewController.swift */; };
+		EAA9CFEC2420D3EE00D29BB8 /* Parse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA9CFEB2420D3EE00D29BB8 /* Parse.swift */; };
+		EAA9CFEE2420D70400D29BB8 /* HtmlParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA9CFED2420D70400D29BB8 /* HtmlParse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		EAA9CFD124205E6500D29BB8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EAA9CFDD2420A7F200D29BB8 /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		EAA9CFDF2420AADA00D29BB8 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
+		EAA9CFEB2420D3EE00D29BB8 /* Parse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parse.swift; sourceTree = "<group>"; };
+		EAA9CFED2420D70400D29BB8 /* HtmlParse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HtmlParse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +75,8 @@
 				EAA9CFCE24205E6500D29BB8 /* LaunchScreen.storyboard */,
 				EAA9CFD124205E6500D29BB8 /* Info.plist */,
 				EAA9CFC924205E5E00D29BB8 /* News.xcdatamodeld */,
+				EAA9CFEB2420D3EE00D29BB8 /* Parse.swift */,
+				EAA9CFED2420D70400D29BB8 /* HtmlParse.swift */,
 			);
 			path = News;
 			sourceTree = "<group>";
@@ -165,9 +171,11 @@
 			files = (
 				EAA9CFC524205E5E00D29BB8 /* ListViewController.swift in Sources */,
 				EAA9CFE02420AADA00D29BB8 /* LaunchViewController.swift in Sources */,
+				EAA9CFEE2420D70400D29BB8 /* HtmlParse.swift in Sources */,
 				EAA9CFC124205E5E00D29BB8 /* AppDelegate.swift in Sources */,
 				EAA9CFCB24205E5E00D29BB8 /* News.xcdatamodeld in Sources */,
 				EAA9CFC324205E5E00D29BB8 /* SceneDelegate.swift in Sources */,
+				EAA9CFEC2420D3EE00D29BB8 /* Parse.swift in Sources */,
 				EAA9CFDE2420A7F200D29BB8 /* ListTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
