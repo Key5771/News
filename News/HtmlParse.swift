@@ -18,7 +18,7 @@ class HtmlParse: NSObject, XMLParserDelegate {
     // 시작
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
         currentElement = elementName
-//        print("line: \(parser.lineNumber), elementName: \(elementName)")
+//        print("Start -> line: \(parser.lineNumber), elementName: \(elementName)")
         
         if elementName == "head" {
             newsItem = [String:String]()
@@ -29,30 +29,33 @@ class HtmlParse: NSObject, XMLParserDelegate {
         if elementName == "meta" {
             if attributeDict["property"] == "og:image" {
                 imageAddress = attributeDict["content"] ?? ""
+                print("imageAddress: \(imageAddress)")
             } else if attributeDict["property"] == "og:description" {
                 keyword = attributeDict["content"] ?? ""
+                print("keyword: \(keyword)")
+            }
+            
+            if imageAddress != "" && keyword != "" {
+                print("Element: \(elementName)")
+                newsItem["image"] = imageAddress
+                newsItem["keyword"] = keyword
+                
+                parser.abortParsing()
             }
         }
     }
     
-//    // 내용
-//    func parser(_ parser: XMLParser, foundCharacters string: String) {
-//        if currentElement == "title" {
-//            newsTitle = string
-//        } else if currentElement == "link" {
-//            newsLink = string
+//    // 끝
+//    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
+//        if elementName == "head" {
+//            newsItem["image"] = imageAddress
+//            newsItem["keyword"] = keyword
+//
+//            parser.abortParsing()
 //        }
+//
+//        print("Finish -> line: \(parser.lineNumber), elementName: \(elementName)")
 //    }
-    
-    // 끝
-    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-        if elementName == "head" {
-            newsItem["image"] = imageAddress
-            newsItem["keyword"] = keyword
-            
-            parser.abortParsing()
-        }
-    }
     
     func getNewsItem() -> [String:String] {
         return newsItem

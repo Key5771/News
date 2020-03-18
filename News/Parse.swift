@@ -10,8 +10,8 @@ import Foundation
 
 class Parse: NSObject, XMLParserDelegate {
     var currentElement = ""
-    var newsItem = [String:String]()
-    var newsItems = [[String:String]]()
+    var newsItem: RSSData?
+    var newsItems = [RSSData]()
     
     var newsTitle = ""
     var newsLink = ""
@@ -21,7 +21,7 @@ class Parse: NSObject, XMLParserDelegate {
         currentElement = elementName
         
         if elementName == "item" {
-            newsItem = [String:String]()
+            newsItem = RSSData()
             newsTitle = ""
             newsLink = ""
         }
@@ -39,14 +39,16 @@ class Parse: NSObject, XMLParserDelegate {
     // 끝
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         if elementName == "item" {
-            newsItem["title"] = newsTitle
-            newsItem["link"] = newsLink
+            newsItem?.title = newsTitle
+            newsItem?.link = newsLink
             
-            newsItems.append(newsItem)
+            if newsItem != nil {
+                newsItems.append(newsItem!)
+            }
         }
     }
     
-    func getNewsItems() -> [[String:String]] {
+    func getNewsItems() -> [RSSData] {
         return newsItems
     }
 }
