@@ -11,6 +11,18 @@ import UIKit
 class ListTableViewCell: UITableViewCell {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var contentLabel: UILabel!
+    @IBOutlet var thumbNailImage: UIImageView!
+    
+    var link: String?
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        link = nil
+        titleLabel.text = nil
+        contentLabel.text = nil
+        thumbNailImage.image = nil
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

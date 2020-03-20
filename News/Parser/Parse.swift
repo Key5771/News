@@ -16,6 +16,10 @@ class Parse: NSObject, XMLParserDelegate {
     var newsTitle = ""
     var newsLink = ""
     
+    
+    func parserDidStartDocument(_ parser: XMLParser) {
+        newsItems = []
+    }
     // 시작
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
         currentElement = elementName
@@ -30,9 +34,9 @@ class Parse: NSObject, XMLParserDelegate {
     // 내용
     func parser(_ parser: XMLParser, foundCharacters string: String) {
         if currentElement == "title" {
-            newsTitle = string
+            newsTitle += string
         } else if currentElement == "link" {
-            newsLink = string
+            newsLink += string
         }
     }
     

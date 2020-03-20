@@ -14,8 +14,18 @@ class LaunchViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.3) {
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "navigationView")
+            UIApplication.shared.keyWindow?.rootViewController = vc
+        }
+        
+    }
 
     /*
     // MARK: - Navigation
