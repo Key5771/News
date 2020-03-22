@@ -26,12 +26,8 @@ class LaunchViewController: UIViewController {
             UIApplication.shared.keyWindow?.rootViewController = vc
         }
         
-        let screenSize: CGRect = UIScreen.main.bounds
-        let width = screenSize.width / 3
-        outerView.frame = CGRect(x: 0, y: 0, width: width, height: width)
-        outerView.layer.cornerRadius = width / 2
+        outerView.layer.cornerRadius = outerView.bounds.width / 2
         outerView.layer.masksToBounds = true
-        
     }
 
     /*
