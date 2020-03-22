@@ -34,45 +34,16 @@ class ListViewController: UIViewController {
         }
     }
     
-//    func requestNewsContent() {
-//        var taskList = [URLSessionTaskWithData<[String]>]()
-//        for i in 0..<newsItems.count {
-//            let url = newsItems[i].link
-//
-//            let taskWithData = htmlParser.sendRequest(url: url!)
-//            taskList.append(taskWithData)
-//        }
-//
-//        var isDone = true
-//        repeat {
-//            isDone = true
-//            for task in taskList {
-//                if task.data == nil {
-//                    isDone = false
-//                    break
-//                }
-//            }
-//        } while(!isDone)
-//
-//        for i in 0..<newsItems.count {
-//            print("data : \(taskList[i].data)")
-//            newsItems[i].imageAddress = taskList[i].data?[0] ?? ""
-//            newsItems[i].description = taskList[i].data?[1] ?? ""
-//
-//        }
-//
-//        refreshController.endRefreshing()
-//    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         requestNewsInfo()
-//        requestNewsContent()
-        tableView.delegate = self
+//        tableView.delegate = self
         tableView.dataSource = self
         
         tableView.refreshControl = refreshController
         refreshController.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        
+        self.title = "News"
     }
     
     @objc func refresh() {
@@ -106,7 +77,6 @@ extension ListViewController: UITableViewDataSource {
         let url = newsItems[indexPath.row].link
         cell.link = url
         cell.titleLabel?.text = newsItems[indexPath.row].title
-//        cell.contentLabel?.text = newsItems[indexPath.row].link
         if newsItems[indexPath.row].imageAddress == nil && newsItems[indexPath.row].description == nil {
             htmlParser.sendRequest(url: url!) { (result: [String]) in
                 self.newsItems[indexPath.row].imageAddress = result[0]
@@ -129,10 +99,8 @@ extension ListViewController: UITableViewDataSource {
     }
 }
 
-extension ListViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-        
-    }
-}
+//extension ListViewController: UITableViewDelegate {
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        tableView.deselectRow(at: indexPath, animated: true)
+//    }
+//}

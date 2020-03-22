@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Q8v-l1-Ias">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
@@ -110,23 +110,109 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noImage" translatesAutoresizingMaskIntoConstraints="NO" id="fge-Nu-C2s">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LZf-Uy-IYv">
+                                <rect key="frame" x="107" y="373" width="200" height="150"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="최신 뉴스를 제공합니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gz0-BM-dnT">
+                                        <rect key="frame" x="0.0" y="32" width="200" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="뉴스의 키워드를 알아보세요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nBJ-bv-jh0">
+                                        <rect key="frame" x="0.0" y="53" width="200" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="뉴스를 클릭하면 원본 뉴스를 볼 수 있습니다." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ppT-km-fng">
+                                        <rect key="frame" x="0.0" y="74" width="200" height="40.666666666666657"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="ppT-km-fng" secondAttribute="trailing" id="7Wf-L6-jkx"/>
+                                    <constraint firstItem="ppT-km-fng" firstAttribute="leading" secondItem="LZf-Uy-IYv" secondAttribute="leading" id="NFW-2H-xsF"/>
+                                    <constraint firstAttribute="trailing" secondItem="gz0-BM-dnT" secondAttribute="trailing" id="ata-gS-YwA"/>
+                                    <constraint firstItem="nBJ-bv-jh0" firstAttribute="top" secondItem="gz0-BM-dnT" secondAttribute="bottom" id="cHJ-Jc-6i8"/>
+                                    <constraint firstItem="gz0-BM-dnT" firstAttribute="top" secondItem="LZf-Uy-IYv" secondAttribute="top" constant="32" id="dGw-NC-1KT"/>
+                                    <constraint firstAttribute="trailing" secondItem="nBJ-bv-jh0" secondAttribute="trailing" id="eEF-cY-HUb"/>
+                                    <constraint firstAttribute="width" constant="200" id="hDq-vd-s2S"/>
+                                    <constraint firstAttribute="height" constant="150" id="jju-iW-6cU"/>
+                                    <constraint firstItem="gz0-BM-dnT" firstAttribute="leading" secondItem="LZf-Uy-IYv" secondAttribute="leading" id="kZx-Sn-OdD"/>
+                                    <constraint firstItem="ppT-km-fng" firstAttribute="top" secondItem="nBJ-bv-jh0" secondAttribute="bottom" id="nKa-e4-we5"/>
+                                    <constraint firstItem="nBJ-bv-jh0" firstAttribute="leading" secondItem="LZf-Uy-IYv" secondAttribute="leading" id="yxP-qm-wuC"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0iR-c3-I1W">
+                                <rect key="frame" x="140" y="207" width="134" height="134"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="news" translatesAutoresizingMaskIntoConstraints="NO" id="eeJ-Dk-H1D">
+                                        <rect key="frame" x="32" y="32" width="70" height="70"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="eeJ-Dk-H1D" secondAttribute="height" multiplier="1:1" id="YhM-Mw-SSN"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="eeJ-Dk-H1D" firstAttribute="leading" secondItem="0iR-c3-I1W" secondAttribute="leading" constant="32" id="VIU-a9-P23"/>
+                                    <constraint firstAttribute="trailing" secondItem="eeJ-Dk-H1D" secondAttribute="trailing" constant="32" id="ld9-NK-fHk"/>
+                                    <constraint firstAttribute="bottom" secondItem="eeJ-Dk-H1D" secondAttribute="bottom" constant="32" id="mY8-hF-2aI"/>
+                                    <constraint firstItem="eeJ-Dk-H1D" firstAttribute="top" secondItem="0iR-c3-I1W" secondAttribute="top" constant="32" id="vdB-Xx-Gfa"/>
+                                </constraints>
+                            </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wifi" translatesAutoresizingMaskIntoConstraints="NO" id="cFl-FA-L6x">
+                                <rect key="frame" x="32" y="297" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="cFl-FA-L6x" secondAttribute="height" multiplier="1:1" id="PPZ-5h-drf"/>
+                                </constraints>
                             </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="earth" translatesAutoresizingMaskIntoConstraints="NO" id="fST-Qu-d4E">
+                                <rect key="frame" x="338" y="297" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="fST-Qu-d4E" secondAttribute="height" multiplier="1:1" id="Lgr-nl-MkY"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="v 1.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gy0-TF-1Q7">
+                                <rect key="frame" x="16" y="825" width="382" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="fge-Nu-C2s" firstAttribute="leading" secondItem="l0J-qf-Fj2" secondAttribute="leading" id="5UZ-Gv-Jbr"/>
-                            <constraint firstItem="l0J-qf-Fj2" firstAttribute="trailing" secondItem="fge-Nu-C2s" secondAttribute="trailing" id="eCa-ao-ZWw"/>
-                            <constraint firstItem="l0J-qf-Fj2" firstAttribute="bottom" secondItem="fge-Nu-C2s" secondAttribute="bottom" id="ls4-Er-hRr"/>
-                            <constraint firstItem="fge-Nu-C2s" firstAttribute="top" secondItem="l0J-qf-Fj2" secondAttribute="top" id="r9d-Pc-tfA"/>
+                            <constraint firstItem="LZf-Uy-IYv" firstAttribute="top" secondItem="0iR-c3-I1W" secondAttribute="bottom" constant="32" id="01K-TP-whM"/>
+                            <constraint firstItem="0iR-c3-I1W" firstAttribute="top" secondItem="l0J-qf-Fj2" secondAttribute="top" constant="163" id="3zD-iP-sAE"/>
+                            <constraint firstItem="Gy0-TF-1Q7" firstAttribute="centerX" secondItem="kt3-F3-PfC" secondAttribute="centerX" id="4c4-EX-5Gr"/>
+                            <constraint firstItem="LZf-Uy-IYv" firstAttribute="top" secondItem="fST-Qu-d4E" secondAttribute="bottom" constant="32" id="DJP-Uj-556"/>
+                            <constraint firstItem="LZf-Uy-IYv" firstAttribute="top" secondItem="cFl-FA-L6x" secondAttribute="bottom" constant="32" id="F8P-u8-xAv"/>
+                            <constraint firstItem="l0J-qf-Fj2" firstAttribute="trailing" secondItem="fST-Qu-d4E" secondAttribute="trailing" constant="32" id="K9d-2z-Weo"/>
+                            <constraint firstItem="l0J-qf-Fj2" firstAttribute="bottom" secondItem="Gy0-TF-1Q7" secondAttribute="bottom" constant="16" id="M77-mf-8uY"/>
+                            <constraint firstItem="cFl-FA-L6x" firstAttribute="leading" secondItem="l0J-qf-Fj2" secondAttribute="leading" constant="32" id="Trx-sH-3kH"/>
+                            <constraint firstItem="LZf-Uy-IYv" firstAttribute="top" secondItem="0iR-c3-I1W" secondAttribute="bottom" constant="32" id="Vmo-Jn-nMa"/>
+                            <constraint firstItem="LZf-Uy-IYv" firstAttribute="centerX" secondItem="kt3-F3-PfC" secondAttribute="centerX" id="Y59-9b-Tu2"/>
+                            <constraint firstItem="0iR-c3-I1W" firstAttribute="centerX" secondItem="kt3-F3-PfC" secondAttribute="centerX" id="Z3g-fm-Pgs"/>
+                            <constraint firstItem="l0J-qf-Fj2" firstAttribute="trailing" secondItem="Gy0-TF-1Q7" secondAttribute="trailing" constant="16" id="ZKO-SE-wBB"/>
+                            <constraint firstItem="0iR-c3-I1W" firstAttribute="leading" secondItem="cFl-FA-L6x" secondAttribute="trailing" constant="64" id="brM-Xm-7zn"/>
+                            <constraint firstItem="LZf-Uy-IYv" firstAttribute="centerY" secondItem="kt3-F3-PfC" secondAttribute="centerY" id="ib6-q6-jeB"/>
+                            <constraint firstItem="fST-Qu-d4E" firstAttribute="leading" secondItem="0iR-c3-I1W" secondAttribute="trailing" constant="64" id="sRS-jN-5Jt"/>
+                            <constraint firstItem="Gy0-TF-1Q7" firstAttribute="leading" secondItem="l0J-qf-Fj2" secondAttribute="leading" constant="16" id="yh3-u8-yVe"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="l0J-qf-Fj2"/>
                     </view>
+                    <connections>
+                        <outlet property="mainImageView" destination="eeJ-Dk-H1D" id="dOO-GF-Ukf"/>
+                        <outlet property="outerView" destination="0iR-c3-I1W" id="BS8-QT-rlB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Ms-nA-GMF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-219" y="119"/>
+            <point key="canvasLocation" x="-220.28985507246378" y="118.52678571428571"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hne-6a-Mjm">
@@ -146,6 +232,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="earth" width="24" height="24"/>
+        <image name="news" width="72" height="72"/>
         <image name="noImage" width="84" height="84"/>
+        <image name="wifi" width="24" height="24"/>
     </resources>
 </document>

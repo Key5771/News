@@ -9,12 +9,13 @@
 import UIKit
 
 class LaunchViewController: UIViewController {
-
+    @IBOutlet var outerView: UIView!
+    @IBOutlet var mainImageView: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -24,6 +25,12 @@ class LaunchViewController: UIViewController {
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "navigationView")
             UIApplication.shared.keyWindow?.rootViewController = vc
         }
+        
+        let screenSize: CGRect = UIScreen.main.bounds
+        let width = screenSize.width / 3
+        outerView.frame = CGRect(x: 0, y: 0, width: width, height: width)
+        outerView.layer.cornerRadius = width / 2
+        outerView.layer.masksToBounds = true
         
     }
 
