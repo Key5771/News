@@ -25,7 +25,9 @@ class LaunchViewController: UIViewController {
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "navigationView")
             UIApplication.shared.keyWindow?.rootViewController = vc
         }
-        
+    }
+    
+    override func viewDidLayoutSubviews() {
         outerView.layer.cornerRadius = outerView.bounds.width / 2
         outerView.layer.masksToBounds = true
     }

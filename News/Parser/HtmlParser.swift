@@ -60,22 +60,13 @@ class HtmlParser {
             
             if(attribute["property"] == "og:image"){
                 image = attribute["content"]
-            }else if attribute["property"] == "og:description" {
+            } else if attribute["property"] == "og:description" {
                 description = String(htmlEncodedString: attribute["content"] ?? "")
             }
             
         }
         
         answer = [image ?? "", description ?? ""]
-        
-//        answer = answer.map({ (str:String) -> String in
-//            guard str.count > 1 else { return str }
-//            var str2 = str
-//            str2.removeFirst()
-//            str2.removeLast()
-//
-//            return str2
-//        })
         
         return answer
     }
