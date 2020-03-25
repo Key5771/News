@@ -6,6 +6,8 @@
 //  Copyright © 2020 김기현. All rights reserved.
 //
 
+
+// change MacBook Pro
 import UIKit
 import Kingfisher
 
