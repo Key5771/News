@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		ACDF3B900D91C8D0C43A9A64 /* Pods_News.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E3226A42727971839DFBB38 /* Pods_News.framework */; };
+		EA3C601B242C9C3E00454664 /* Keyword.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3C601A242C9C3E00454664 /* Keyword.swift */; };
 		EAA9CFC124205E5E00D29BB8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA9CFC024205E5E00D29BB8 /* AppDelegate.swift */; };
 		EAA9CFC324205E5E00D29BB8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA9CFC224205E5E00D29BB8 /* SceneDelegate.swift */; };
 		EAA9CFC524205E5E00D29BB8 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA9CFC424205E5E00D29BB8 /* ListViewController.swift */; };
@@ -42,6 +43,7 @@
 		9E3226A42727971839DFBB38 /* Pods_News.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_News.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE325449883E3905187B03BD /* Pods-News.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-News.release.xcconfig"; path = "Target Support Files/Pods-News/Pods-News.release.xcconfig"; sourceTree = "<group>"; };
 		E9FD4648338013A618BD67D0 /* Pods_NewsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NewsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA3C601A242C9C3E00454664 /* Keyword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyword.swift; sourceTree = "<group>"; };
 		EAA9CFBD24205E5E00D29BB8 /* News.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = News.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAA9CFC024205E5E00D29BB8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EAA9CFC224205E5E00D29BB8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				EAA9CFCE24205E6500D29BB8 /* LaunchScreen.storyboard */,
 				EAA9CFD124205E6500D29BB8 /* Info.plist */,
 				EAA9CFC924205E5E00D29BB8 /* News.xcdatamodeld */,
+				EA3C601A242C9C3E00454664 /* Keyword.swift */,
 			);
 			path = News;
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 				EAA9CFE02420AADA00D29BB8 /* LaunchViewController.swift in Sources */,
 				EAA9CFF2242206E100D29BB8 /* HtmlParser.swift in Sources */,
 				EAA9CFC124205E5E00D29BB8 /* AppDelegate.swift in Sources */,
+				EA3C601B242C9C3E00454664 /* Keyword.swift in Sources */,
 				EAA9CFCB24205E5E00D29BB8 /* News.xcdatamodeld in Sources */,
 				EAA9CFF02422020600D29BB8 /* RSSData.swift in Sources */,
 				EAA9CFC324205E5E00D29BB8 /* SceneDelegate.swift in Sources */,

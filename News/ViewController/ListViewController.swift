@@ -7,7 +7,6 @@
 //
 
 
-// change MacBook Pro
 import UIKit
 import Kingfisher
 
@@ -17,7 +16,6 @@ class ListViewController: UIViewController {
     
     var xmlParser = XMLParser()
     var newsItems = [RSSData]()
-    var newsContent = [String]()
     let url = "https://news.google.com/rss"
     var parse = Parse()
     var htmlParser = HtmlParser()
