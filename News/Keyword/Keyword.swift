@@ -20,7 +20,7 @@ class KeywordData {
 
 class Keyword {
     
-    func getKeyword(str: String) -> [String] {
+    func getKeyword(str: String, completion: @escaping ([String]) -> Void) {
         let arr = str.components(separatedBy: [" ","\n","\t",",",".","…","(",")","[","]","{","}","<",">","【","】","/","\"","“","”","'","‘","’","`"])
         var data = [KeywordData]()
         var dict = [String:Int]()
@@ -48,7 +48,7 @@ class Keyword {
             answer.append(data.removeFirst().keyword)
         }
         
-        return answer
+        completion(answer)
     }
 }
 

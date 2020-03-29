@@ -9,8 +9,8 @@
 import UIKit
 
 class LaunchViewController: UIViewController {
-    @IBOutlet var outerView: UIView!
-    @IBOutlet var mainImageView: UIImageView!
+    @IBOutlet private var outerView: UIView!
+    @IBOutlet private var mainImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -12,6 +12,10 @@ class ListTableViewCell: UITableViewCell {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var contentLabel: UILabel!
     @IBOutlet var thumbNailImage: UIImageView!
+    @IBOutlet weak var firstLabel: UILabel!
+    @IBOutlet weak var secondLabel: UILabel!
+    @IBOutlet weak var thirdLabel: UILabel!
+    
     
     var link: String?
     

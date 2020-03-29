@@ -11,7 +11,12 @@ import WebKit
 
 class ContentViewController: UIViewController, WKUIDelegate {
     
-    var webView: WKWebView!
+    @IBOutlet private weak var webKitView: WKWebView!
+    @IBOutlet private weak var firstLabel: UILabel!
+    @IBOutlet private weak var secondLabel: UILabel!
+    @IBOutlet private weak var thirdLabel: UILabel!
+    
+    private var webView: WKWebView!
     var newsItems: RSSData?
     
     override func loadView() {
@@ -31,6 +36,12 @@ class ContentViewController: UIViewController, WKUIDelegate {
         let request = URLRequest(url: url!)
         webView.load(request)
         
+        
+        firstLabel?.text = newsItems?.keyword?[0]
+        secondLabel?.text = newsItems?.keyword?[1]
+        thirdLabel?.text = newsItems?.keyword?[2]
+        
+        print("keyword text@!@!@!@!@!@!@ : \(String(describing: newsItems?.keyword))")
 
         // Do any additional setup after loading the view.
     }

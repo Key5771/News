@@ -19,6 +19,7 @@ class ListViewController: UIViewController {
     let url = "https://news.google.com/rss"
     var parse = Parse()
     var htmlParser = HtmlParser()
+    var keyword = Keyword()
     
     func requestNewsInfo() {
         DispatchQueue.global().async {
@@ -37,7 +38,6 @@ class ListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         requestNewsInfo()
-//        tableView.delegate = self
         tableView.dataSource = self
         
         tableView.refreshControl = refreshController
@@ -87,6 +87,14 @@ extension ListViewController: UITableViewDataSource {
                     cell.contentLabel?.text = result[1]
                     let url = URL(string: result[0])
                     cell.thumbNailImage.kf.setImage(with: url, placeholder: UIImage(named: "noImage"))
+                    self.keyword.getKeyword(str: self.newsItems[indexPath.row].description ?? "") { (result: [String]) in
+                        self.newsItems[indexPath.row].keyword = result
+                        if result != [] {
+                            cell.firstLabel?.text = result[0]
+                            cell.secondLabel?.text = result[1]
+                            cell.thirdLabel?.text = result[2]
+                        }
+                    }
                 }
             }
         } else {
@@ -98,9 +106,3 @@ extension ListViewController: UITableViewDataSource {
         return cell
     }
 }
-
-//extension ListViewController: UITableViewDelegate {
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        tableView.deselectRow(at: indexPath, animated: true)
-//    }
-//}

@@ -13,4 +13,5 @@ struct RSSData {
     var link: String?
     var imageAddress: String?
     var description: String?
+    var keyword: [String]?
 }

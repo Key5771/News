@@ -104,6 +104,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		EA3C601C242E0AA400454664 /* Keyword */ = {
+			isa = PBXGroup;
+			children = (
+				EA3C601A242C9C3E00454664 /* Keyword.swift */,
+			);
+			path = Keyword;
+			sourceTree = "<group>";
+		};
 		EAA9CFB424205E5E00D29BB8 = {
 			isa = PBXGroup;
 			children = (
@@ -127,6 +135,7 @@
 		EAA9CFBF24205E5E00D29BB8 /* News */ = {
 			isa = PBXGroup;
 			children = (
+				EA3C601C242E0AA400454664 /* Keyword */,
 				EAA9D0062424C77100D29BB8 /* Parser */,
 				EAA9D0052424C75100D29BB8 /* Model */,
 				EAA9CFDC2420A7DD00D29BB8 /* TableViewCell */,
@@ -138,7 +147,6 @@
 				EAA9CFCE24205E6500D29BB8 /* LaunchScreen.storyboard */,
 				EAA9CFD124205E6500D29BB8 /* Info.plist */,
 				EAA9CFC924205E5E00D29BB8 /* News.xcdatamodeld */,
-				EA3C601A242C9C3E00454664 /* Keyword.swift */,
 			);
 			path = News;
 			sourceTree = "<group>";
@@ -527,6 +535,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U53BLS7M93;
 				INFOPLIST_FILE = News/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -546,6 +555,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U53BLS7M93;
 				INFOPLIST_FILE = News/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
