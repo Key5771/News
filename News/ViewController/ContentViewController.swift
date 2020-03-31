@@ -11,20 +11,25 @@ import WebKit
 
 class ContentViewController: UIViewController, WKUIDelegate {
     
-    @IBOutlet private weak var webKitView: WKWebView!
+    @IBOutlet private weak var outerView: UIView!
     @IBOutlet private weak var firstLabel: UILabel!
     @IBOutlet private weak var secondLabel: UILabel!
     @IBOutlet private weak var thirdLabel: UILabel!
+    @IBOutlet weak var stackView: UIStackView!
+    @IBOutlet weak var firstView: UIView!
+    @IBOutlet weak var secondView: UIView!
+    @IBOutlet weak var thirdView: UIView!
     
     private var webView: WKWebView!
     var newsItems: RSSData?
     
-    override func loadView() {
-        let webConfiguration = WKWebViewConfiguration()
-        webView = WKWebView(frame: .zero, configuration: webConfiguration)
-        webView.uiDelegate = self
+    func beforeViewDidLoad() {
+        super.loadView()
         
-        view = webView
+        webView = WKWebView(frame: self.outerView.bounds, configuration: WKWebViewConfiguration())
+        
+        self.outerView.addSubview(webView)
+        webView.uiDelegate = self
         
         self.title = newsItems?.title
     }
@@ -32,18 +37,29 @@ class ContentViewController: UIViewController, WKUIDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let url = URL(string: newsItems?.link ?? "")
-        let request = URLRequest(url: url!)
-        webView.load(request)
+        beforeViewDidLoad()
         
+        stackView.backgroundColor = UIColor.lightGray
+        stackView.layer.borderWidth = 1
+        
+//        firstView.layer.cornerRadius = 20
+        firstView.layer.borderWidth = 1
+        
+//        secondView.layer.cornerRadius = 20
+        secondView.layer.borderWidth = 1
+        
+//        thirdView.layer.cornerRadius = 20
+        thirdView.layer.borderWidth = 1
         
         firstLabel?.text = newsItems?.keyword?[0]
         secondLabel?.text = newsItems?.keyword?[1]
         thirdLabel?.text = newsItems?.keyword?[2]
         
-        print("keyword text@!@!@!@!@!@!@ : \(String(describing: newsItems?.keyword))")
-
-        // Do any additional setup after loading the view.
+        view.addSubview(stackView)
+        
+        let url = URL(string: newsItems?.link ?? "")
+        let request = URLRequest(url: url!)
+        webView.load(request)
     }
     
 

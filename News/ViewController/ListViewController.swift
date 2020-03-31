@@ -87,12 +87,18 @@ extension ListViewController: UITableViewDataSource {
                     cell.contentLabel?.text = result[1]
                     let url = URL(string: result[0])
                     cell.thumbNailImage.kf.setImage(with: url, placeholder: UIImage(named: "noImage"))
+                    
                     self.keyword.getKeyword(str: self.newsItems[indexPath.row].description ?? "") { (result: [String]) in
-                        self.newsItems[indexPath.row].keyword = result
                         if result != [] {
+                            self.newsItems[indexPath.row].keyword = result
                             cell.firstLabel?.text = result[0]
                             cell.secondLabel?.text = result[1]
                             cell.thirdLabel?.text = result[2]
+                        }
+                        else {
+                            cell.firstLabel?.text = ""
+                            cell.secondLabel?.text = ""
+                            cell.thirdLabel?.text = ""
                         }
                     }
                 }
@@ -101,6 +107,16 @@ extension ListViewController: UITableViewDataSource {
             cell.contentLabel?.text = newsItems[indexPath.row].description
             let url = URL(string: newsItems[indexPath.row].imageAddress ?? "")
             cell.thumbNailImage.kf.setImage(with: url, placeholder: UIImage(named: "noImage"))
+            if newsItems[indexPath.row].keyword != nil {
+                cell.firstLabel?.text = newsItems[indexPath.row].keyword?[0]
+                cell.secondLabel?.text = newsItems[indexPath.row].keyword?[1]
+                cell.thirdLabel?.text = newsItems[indexPath.row].keyword?[2]
+            } else {
+                cell.firstLabel?.text = ""
+                cell.secondLabel?.text = ""
+                cell.thirdLabel?.text = ""
+            }
+            
         }
         
         return cell

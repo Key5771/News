@@ -26,6 +26,7 @@ class ListTableViewCell: UITableViewCell {
         titleLabel.text = nil
         contentLabel.text = nil
         thumbNailImage.image = nil
+        
     }
     
     override func awakeFromNib() {

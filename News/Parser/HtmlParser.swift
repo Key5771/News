@@ -9,10 +9,7 @@
 import Foundation
 
 class HtmlParser {
-    
-//    init(url: String) {
-//        self.url = URL(string: url)!
-//    }
+
     
     func sendRequest(url: String, completion: @escaping ([String]) -> Void) {
         let url: URL = URL(string: url)!
@@ -20,19 +17,48 @@ class HtmlParser {
         var resultData = [String]()
         
         let task = session.dataTask(with: url) { data, response, error in
-            if error == nil {
-                let korean = String.Encoding(rawValue: CFStringConvertEncodingToNSStringEncoding(0x0422))
-                let result = String(data: data!, encoding: .utf8) ?? String(data: data!, encoding: korean)
-                print("url : \(url)")
-                resultData = self.parseHtml(data: result ?? "")
-                print("resultData : \(resultData)")
-            } else {
+            guard error == nil else {
                 print(error as Any)
-                resultData = ["", ""]
+                return self.errorReturn(completion: completion)
             }
+            
+            guard let response = response as? HTTPURLResponse else {
+                return self.errorReturn(completion: completion)
+            }
+            
+            print("encoding type: \(String(describing: response.textEncodingName))")
+            print("HTTP Response: \(response.statusCode)")
+            
+            var encodeFail = false;
+            
+            let cp949 = String.Encoding(rawValue: CFStringConvertEncodingToNSStringEncoding(0x0422))
+            let euckr = String.Encoding(rawValue: CFStringConvertEncodingToNSStringEncoding(0x0940))
+            
+            var result = String(data: data!, encoding: .utf8) ?? String(data: data!, encoding: euckr) ?? String(data: data!, encoding: cp949)
+            
+            if result == nil {
+                result = String(data: data!, encoding: .ascii)
+                encodeFail = true;
+            }
+            resultData = self.parseHtml(data: result ?? "")
+            
+//            if(resultData[0] == "" && resultData[1] == "") {
+//                print("url:\(url.absoluteString), status:\(response.statusCode), data: \(String(describing: data)), result:\(String(describing: result)), dataLength: \((data?.count)!)")
+//            }
+            
+            if encodeFail == true {
+                resultData[0] = self.asciiToUTF8(str: resultData[0]) ?? ""
+                resultData[1] = self.asciiToUTF8(str: resultData[1]) ?? ""
+            }
+            
             completion(resultData)
         }
+        
         task.resume()
+    }
+    
+    private func errorReturn(completion: @escaping ([String]) -> Void) {
+        completion(["",""])
     }
     
     public func parseHtml(data: String) -> [String] {
@@ -41,21 +67,18 @@ class HtmlParser {
         var description: String?
         var answer = [String]()
 
-        print("mMetadata: \(mMetadata)")
         for i in mMetadata {
             var attribute = [String:String]()
             let properties = i.getArrayAfterRegex(regex: "\\w+=((\"[^\"]*\"|\'[^\']*\')|[^\"\' ]*)")
             for property in properties {
-                let a = property.split(separator: "=", maxSplits: 1)
-                let key = String(a[0])
-                var data = String(a[1])
+                let splitData = property.split(separator: "=", maxSplits: 1)
+                let key = String(splitData[0])
+                var data = String(splitData[1])
                 if (data.first == "\"" && data.last == "\"") || (data.first == "\'" && data.last == "\'") {
                     data.removeFirst()
                     data.removeLast()
                 }
                 attribute[key] = data
-                print("key: \(key)")
-                print("data: \(data)")
             }
             
             if(attribute["property"] == "og:image"){
@@ -63,12 +86,27 @@ class HtmlParser {
             } else if attribute["property"] == "og:description" {
                 description = String(htmlEncodedString: attribute["content"] ?? "")
             }
-            
         }
         
         answer = [image ?? "", description ?? ""]
         
         return answer
+    }
+    
+    /**
+        Ascii to UTF-8 convert.
+        if it fail retun nil
+     */
+    func asciiToUTF8(str: String) -> String? {
+        let buffer = str.data(using: String.Encoding.ascii)
+        
+        if buffer != nil {
+            let strUTF8 = String(data: buffer!, encoding: String.Encoding.utf8)
+            print("strUTF8: \(String(describing: strUTF8))")
+            return strUTF8
+        } else {
+            return nil
+        }
     }
 }
 
