@@ -10,7 +10,6 @@ import Foundation
 
 class HtmlParser {
 
-    
     func sendRequest(url: String, completion: @escaping ([String]) -> Void) {
         let url: URL = URL(string: url)!
         let session = URLSession.shared
@@ -29,27 +28,17 @@ class HtmlParser {
             print("encoding type: \(String(describing: response.textEncodingName))")
             print("HTTP Response: \(response.statusCode)")
             
-            var encodeFail = false;
-            
             let cp949 = String.Encoding(rawValue: CFStringConvertEncodingToNSStringEncoding(0x0422))
             let euckr = String.Encoding(rawValue: CFStringConvertEncodingToNSStringEncoding(0x0940))
             
             var result = String(data: data!, encoding: .utf8) ?? String(data: data!, encoding: euckr) ?? String(data: data!, encoding: cp949)
             
             if result == nil {
-                result = String(data: data!, encoding: .ascii)
-                encodeFail = true;
+                let bytes: Data = data!
+                result = String(decoding: bytes, as: UTF8.self)
             }
+            
             resultData = self.parseHtml(data: result ?? "")
-            
-//            if(resultData[0] == "" && resultData[1] == "") {
-//                print("url:\(url.absoluteString), status:\(response.statusCode), data: \(String(describing: data)), result:\(String(describing: result)), dataLength: \((data?.count)!)")
-//            }
-            
-            if encodeFail == true {
-                resultData[0] = self.asciiToUTF8(str: resultData[0]) ?? ""
-                resultData[1] = self.asciiToUTF8(str: resultData[1]) ?? ""
-            }
             
             completion(resultData)
         }
@@ -62,7 +51,7 @@ class HtmlParser {
     }
     
     public func parseHtml(data: String) -> [String] {
-        let mMetadata = data.getArrayAfterRegex(regex: "<meta[^<>]*[ ]+property=(\"|\')[^<>]*(\"|\')[ ]+content=(\"|\')[^<>]*(\"|\')[ ]*/?>")
+        let mMetadata = data.getArrayAfterRegex(regex: "<meta\\s+(([\\w-]+=((\"[^\"]*\"|\'[^\']*\')|[^\"\' ]*))\\s*)+/?>")
         var image: String?
         var description: String?
         var answer = [String]()
@@ -93,10 +82,7 @@ class HtmlParser {
         return answer
     }
     
-    /**
-        Ascii to UTF-8 convert.
-        if it fail retun nil
-     */
+    // Ascii to UTF-8 convert. if it fail retun nil.
     func asciiToUTF8(str: String) -> String? {
         let buffer = str.data(using: String.Encoding.ascii)
         

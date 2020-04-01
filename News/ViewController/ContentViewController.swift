@@ -39,21 +39,19 @@ class ContentViewController: UIViewController, WKUIDelegate {
         
         beforeViewDidLoad()
         
-        stackView.backgroundColor = UIColor.lightGray
-        stackView.layer.borderWidth = 1
-        
-//        firstView.layer.cornerRadius = 20
-        firstView.layer.borderWidth = 1
-        
-//        secondView.layer.cornerRadius = 20
-        secondView.layer.borderWidth = 1
-        
-//        thirdView.layer.cornerRadius = 20
-        thirdView.layer.borderWidth = 1
-        
-        firstLabel?.text = newsItems?.keyword?[0]
-        secondLabel?.text = newsItems?.keyword?[1]
-        thirdLabel?.text = newsItems?.keyword?[2]
+        if newsItems?.keyword != nil {
+            firstView.layer.borderWidth = 1
+            secondView.layer.borderWidth = 1
+            thirdView.layer.borderWidth = 1
+            
+            firstLabel.text = newsItems?.keyword?[0]
+            secondLabel.text = newsItems?.keyword?[1]
+            thirdLabel.text = newsItems?.keyword?[2]
+        } else {
+            firstView.isHidden = true
+            secondView.isHidden = true
+            thirdView.isHidden = true
+        }
         
         view.addSubview(stackView)
         
