@@ -25,6 +25,7 @@ class ContentViewController: UIViewController, WKUIDelegate {
     private var observation: NSKeyValueObservation?
     var newsItems: RSSData?
     
+    // ARC Action Check.
     deinit {
         print("ContentViewController deinit")
         observation = nil

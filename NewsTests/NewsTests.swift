@@ -11,7 +11,6 @@ import XCTest
 
 class NewsTests: XCTestCase {
     
-//    var parser = HtmlParser(url: "dsfhdksjhfjksdh")
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -52,42 +51,46 @@ class NewsTests: XCTestCase {
         XCTAssert(res[0] == "https://image.ytn.co.kr/general/jpg/2020/0330/202003301819568696_t.jpg")
         XCTAssert(res[1] == "[앵커]문재인 대통령이 소득 하위 70%에 해당하는 약 천4백...")
         
-        let keyword = "가나 다라 마바 가나 가나 다라 바사 김기현 이도현 이도현 이도현 이도현 이도현"
+        // 키워드 추출 알고리즘 테스트
+//        let keyword = "가나 다라 마바 가나 가나 다라 바사 김기현 이도현 이도현 이도현 이도현 이도현"
 
-        func getKeyword(str: String) -> [String] {
-            let arr = str.components(separatedBy: [" ","\n","\t",",",".","…","(",")","[","]","{","}","<",">","【","】","/","\"","“","”","'","‘","’","`"])
-            var data = [KeywordData]()
-
-            var dict = [String:Int]()
-            var answer = [String]()
-
-            for str in arr{
-                dict[str] = (dict[str] ?? 0) + 1
-            }
-
-            for (key, value) in dict {
-                if key.count < 2 {
-                    continue
-                }
-                data.append(KeywordData(keyword: key, count: value))
-            }
-
-            data = data.sorted(by: { (lhs, rhs) -> Bool in
-                if lhs.count == rhs.count {
-                    return lhs.keyword < rhs.keyword
-                }
-                return lhs.count > rhs.count
-            })
-
-            while(data.count > 0 && answer.count < 3){
-                answer.append(data.removeFirst().keyword)
-            }
-
-            return answer
-        }
+//        func getKeyword(str: String) -> [String] {
+//            let arr = str.components(separatedBy: [" ","\n","\t",",",".","…","(",")","[","]","{","}","<",">","【","】","/","\"","“","”","'","‘","’","`"])
+//            var data = [KeywordData]()
+//
+//            var dict = [String:Int]()
+//            var answer = [String]()
+//
+//            for str in arr{
+//                dict[str] = (dict[str] ?? 0) + 1
+//            }
+//
+//            for (key, value) in dict {
+//                if key.count < 2 {
+//                    continue
+//                }
+//                data.append(KeywordData(keyword: key, count: value))
+//            }
+//
+//            data = data.sorted(by: { (lhs, rhs) -> Bool in
+//                if lhs.count == rhs.count {
+//                    return lhs.keyword < rhs.keyword
+//                }
+//                return lhs.count > rhs.count
+//            })
+//
+//            while(data.count > 0 && answer.count < 3){
+//                answer.append(data.removeFirst().keyword)
+//            }
+//
+//            return answer
+//        }
+//
+//        let answer = getKeyword(str: keyword)
+//        XCTAssert(answer == ["이도현", "가나", "다라"])
         
-        let answer = getKeyword(str: keyword)
-        XCTAssert(answer == ["이도현", "가나", "다라"])
+        
+        
         
     }
 

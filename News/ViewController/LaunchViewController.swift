@@ -27,6 +27,7 @@ class LaunchViewController: UIViewController {
         outerView.layer.masksToBounds = true
     }
     
+    // ARC Action Check.
     deinit {
         print("LaunchViewController deinit")
     }
