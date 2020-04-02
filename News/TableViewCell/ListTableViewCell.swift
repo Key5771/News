@@ -25,7 +25,10 @@ class ListTableViewCell: UITableViewCell {
         link = nil
         titleLabel.text = nil
         contentLabel.text = nil
-        thumbNailImage.image = nil
+        thumbNailImage.image = UIImage(named: "noImage")
+        firstLabel.text = nil
+        secondLabel.text = nil
+        thirdLabel.text = nil
         
     }
     

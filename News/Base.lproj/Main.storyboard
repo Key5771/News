@@ -140,7 +140,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="DZq-X1-cdo" firstAttribute="centerY" secondItem="OX6-Jv-j2K" secondAttribute="centerY" id="SUz-OP-BAY"/>
                                             <constraint firstItem="DZq-X1-cdo" firstAttribute="centerX" secondItem="OX6-Jv-j2K" secondAttribute="centerX" id="pvJ-Ib-zZh"/>
@@ -156,7 +156,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="7QZ-wn-kWg" firstAttribute="centerX" secondItem="YUz-p1-tBE" secondAttribute="centerX" id="SLG-gR-sSY"/>
                                             <constraint firstItem="7QZ-wn-kWg" firstAttribute="centerY" secondItem="YUz-p1-tBE" secondAttribute="centerY" id="acg-WI-IGh"/>
@@ -172,7 +172,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="1XN-uG-6fg" firstAttribute="centerY" secondItem="FVr-Cx-EZ2" secondAttribute="centerY" id="XMx-5K-pGN"/>
                                             <constraint firstItem="1XN-uG-6fg" firstAttribute="centerX" secondItem="FVr-Cx-EZ2" secondAttribute="centerX" id="uaa-16-Ga3"/>
@@ -261,10 +261,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0iR-c3-I1W">
-                                <rect key="frame" x="138" y="203" width="138" height="138"/>
+                                <rect key="frame" x="135" y="197" width="144" height="144"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="news" translatesAutoresizingMaskIntoConstraints="NO" id="eeJ-Dk-H1D">
-                                        <rect key="frame" x="34.666666666666657" y="34.666666666666657" width="69" height="69"/>
+                                        <rect key="frame" x="36" y="36" width="72" height="72"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="eeJ-Dk-H1D" secondAttribute="height" multiplier="1:1" id="YhM-Mw-SSN"/>
                                         </constraints>
@@ -276,16 +276,17 @@
                                     <constraint firstAttribute="width" secondItem="0iR-c3-I1W" secondAttribute="height" multiplier="1:1" id="Kgj-Ra-4OM"/>
                                     <constraint firstItem="eeJ-Dk-H1D" firstAttribute="centerY" secondItem="0iR-c3-I1W" secondAttribute="centerY" id="Qdt-QM-uC8"/>
                                     <constraint firstItem="eeJ-Dk-H1D" firstAttribute="width" secondItem="0iR-c3-I1W" secondAttribute="width" multiplier="1/2" id="XQc-AU-gCn"/>
+                                    <constraint firstAttribute="width" constant="144" id="cLB-ka-X03"/>
                                 </constraints>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wifi" translatesAutoresizingMaskIntoConstraints="NO" id="cFl-FA-L6x">
-                                <rect key="frame" x="46" y="295" width="46" height="46"/>
+                                <rect key="frame" x="45" y="293" width="48" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="cFl-FA-L6x" secondAttribute="height" multiplier="1:1" id="PPZ-5h-drf"/>
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="earth" translatesAutoresizingMaskIntoConstraints="NO" id="fST-Qu-d4E">
-                                <rect key="frame" x="322" y="295" width="46" height="46"/>
+                                <rect key="frame" x="321" y="293" width="48" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="fST-Qu-d4E" secondAttribute="height" multiplier="1:1" id="Lgr-nl-MkY"/>
                                 </constraints>
@@ -300,10 +301,10 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="fST-Qu-d4E" firstAttribute="centerX" secondItem="kt3-F3-PfC" secondAttribute="centerX" multiplier="5/3" id="3wv-5a-Vgo"/>
-                            <constraint firstItem="Gy0-TF-1Q7" firstAttribute="centerX" secondItem="kt3-F3-PfC" secondAttribute="centerX" id="4c4-EX-5Gr"/>
                             <constraint firstItem="LZf-Uy-IYv" firstAttribute="top" secondItem="fST-Qu-d4E" secondAttribute="bottom" constant="32" id="DJP-Uj-556"/>
                             <constraint firstItem="LZf-Uy-IYv" firstAttribute="top" secondItem="cFl-FA-L6x" secondAttribute="bottom" constant="32" id="F8P-u8-xAv"/>
                             <constraint firstItem="l0J-qf-Fj2" firstAttribute="bottom" secondItem="Gy0-TF-1Q7" secondAttribute="bottom" constant="16" id="M77-mf-8uY"/>
+                            <constraint firstItem="0iR-c3-I1W" firstAttribute="top" relation="greaterThanOrEqual" secondItem="l0J-qf-Fj2" secondAttribute="top" constant="16" id="MxS-PW-DL8"/>
                             <constraint firstItem="LZf-Uy-IYv" firstAttribute="top" secondItem="0iR-c3-I1W" secondAttribute="bottom" constant="32" id="Vmo-Jn-nMa"/>
                             <constraint firstItem="LZf-Uy-IYv" firstAttribute="centerX" secondItem="kt3-F3-PfC" secondAttribute="centerX" id="Y59-9b-Tu2"/>
                             <constraint firstItem="0iR-c3-I1W" firstAttribute="centerX" secondItem="kt3-F3-PfC" secondAttribute="centerX" id="Z3g-fm-Pgs"/>
@@ -311,7 +312,6 @@
                             <constraint firstItem="fST-Qu-d4E" firstAttribute="width" secondItem="0iR-c3-I1W" secondAttribute="width" multiplier="1/3" id="afx-V0-FMw"/>
                             <constraint firstItem="LZf-Uy-IYv" firstAttribute="centerY" secondItem="kt3-F3-PfC" secondAttribute="centerY" id="ib6-q6-jeB"/>
                             <constraint firstItem="cFl-FA-L6x" firstAttribute="width" secondItem="0iR-c3-I1W" secondAttribute="width" multiplier="1/3" id="p7d-rY-U2n"/>
-                            <constraint firstItem="0iR-c3-I1W" firstAttribute="width" secondItem="kt3-F3-PfC" secondAttribute="width" multiplier="1 / 3" id="ppn-Qn-Brc"/>
                             <constraint firstItem="Gy0-TF-1Q7" firstAttribute="leading" secondItem="l0J-qf-Fj2" secondAttribute="leading" constant="16" id="yh3-u8-yVe"/>
                             <constraint firstItem="cFl-FA-L6x" firstAttribute="centerX" secondItem="kt3-F3-PfC" secondAttribute="centerX" multiplier="1/3" id="zxa-dP-Shy"/>
                         </constraints>

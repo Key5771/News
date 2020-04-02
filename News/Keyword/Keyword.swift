@@ -20,14 +20,14 @@ class KeywordData {
 
 class Keyword {
     
-    func getKeyword(str: String, completion: @escaping ([String]) -> Void) {
+    func getKeyword(str: String) -> [String] {
         let arr = str.components(separatedBy: [" ","\n","\t",",",".","…","(",")","[","]","{","}","<",">","【","】","/","\"","“","”","'","‘","’","`"])
         var data = [KeywordData]()
         var dict = [String:Int]()
         var answer = [String]()
         
         for str in arr{
-            dict[str] = (dict[str] ?? 0) + 1
+            dict[str] = dict[str, default: 0] + 1
         }
         
         for (key, value) in dict {
@@ -48,7 +48,7 @@ class Keyword {
             answer.append(data.removeFirst().keyword)
         }
         
-        completion(answer)
+        return answer
     }
 }
 

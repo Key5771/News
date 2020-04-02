@@ -46,8 +46,8 @@ class Parse: NSObject, XMLParserDelegate {
             newsItem?.title = newsTitle
             newsItem?.link = newsLink
             
-            if newsItem != nil {
-                newsItems.append(newsItem!)
+            if let item = newsItem {
+                newsItems.append(item)
             }
         }
     }

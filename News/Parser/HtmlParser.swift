@@ -10,35 +10,32 @@ import Foundation
 
 class HtmlParser {
 
-    func sendRequest(url: String, completion: @escaping ([String]) -> Void) {
-        let url: URL = URL(string: url)!
+    func sendRequest(url: String, completion: @escaping ([String?]) -> Void) {
+        guard let url = URL(string: url) else {
+            completion([])
+            return
+        }
         let session = URLSession.shared
-        var resultData = [String]()
+        var resultData = [String?]()
         
         let task = session.dataTask(with: url) { data, response, error in
             guard error == nil else {
-                print(error as Any)
                 return self.errorReturn(completion: completion)
             }
-            
-            guard let response = response as? HTTPURLResponse else {
-                return self.errorReturn(completion: completion)
+            guard let data = data else {
+                completion(["", ""])
+                return
             }
-            
-            print("encoding type: \(String(describing: response.textEncodingName))")
-            print("HTTP Response: \(response.statusCode)")
             
             let cp949 = String.Encoding(rawValue: CFStringConvertEncodingToNSStringEncoding(0x0422))
             let euckr = String.Encoding(rawValue: CFStringConvertEncodingToNSStringEncoding(0x0940))
             
-            var result = String(data: data!, encoding: .utf8) ?? String(data: data!, encoding: euckr) ?? String(data: data!, encoding: cp949)
+            let result = String(data: data, encoding: .utf8)
+                ?? String(data: data, encoding: euckr)
+                ?? String(data: data, encoding: cp949)
+                ?? String(decoding: data, as: UTF8.self)
             
-            if result == nil {
-                let bytes: Data = data!
-                result = String(decoding: bytes, as: UTF8.self)
-            }
-            
-            resultData = self.parseHtml(data: result ?? "")
+            resultData = self.parseHtml(data: result)
             
             completion(resultData)
         }
@@ -50,11 +47,11 @@ class HtmlParser {
         completion(["",""])
     }
     
-    public func parseHtml(data: String) -> [String] {
-        let mMetadata = data.getArrayAfterRegex(regex: "<meta\\s+(([\\w-]+=((\"[^\"]*\"|\'[^\']*\')|[^\"\' ]*))\\s*)+/?>")
+    public func parseHtml(data: String) -> [String?] {
+        let mMetadata = data.getArrayAfterRegex(regex: "<meta\\s+(([\\w-]+=((\"[^\"]*\"|\'[^\']*\')|[^\"\' ]*))\\s*)+[^>]*/?>")
         var image: String?
         var description: String?
-        var answer = [String]()
+        var answer = [String?]()
 
         for i in mMetadata {
             var attribute = [String:String]()
@@ -73,33 +70,20 @@ class HtmlParser {
             if(attribute["property"] == "og:image"){
                 image = attribute["content"]
             } else if attribute["property"] == "og:description" {
-                description = String(htmlEncodedString: attribute["content"] ?? "")
+                description = String(htmlEncodedString: attribute["content"])
             }
         }
         
-        answer = [image ?? "", description ?? ""]
+        answer = [image, description]
         
         return answer
-    }
-    
-    // Ascii to UTF-8 convert. if it fail retun nil.
-    func asciiToUTF8(str: String) -> String? {
-        let buffer = str.data(using: String.Encoding.ascii)
-        
-        if buffer != nil {
-            let strUTF8 = String(data: buffer!, encoding: String.Encoding.utf8)
-            print("strUTF8: \(String(describing: strUTF8))")
-            return strUTF8
-        } else {
-            return nil
-        }
     }
 }
 
 extension String {
-    init?(htmlEncodedString: String) {
-
-        guard let data = htmlEncodedString.data(using: .utf8) else {
+    // https://stackoverflow.com/questions/25607247/how-do-i-decode-html-entities-in-swift
+    init?(htmlEncodedString: String?) {
+        guard let data = htmlEncodedString?.data(using: .utf8) else {
             return nil
         }
 
@@ -115,6 +99,7 @@ extension String {
         self.init(attributedString.string)
     }
     
+    // https://eunjin3786.tistory.com/12
     func getArrayAfterRegex(regex: String) -> [String] {
         do {
             let regex = try NSRegularExpression(pattern: regex)

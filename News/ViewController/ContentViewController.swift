@@ -15,20 +15,27 @@ class ContentViewController: UIViewController, WKUIDelegate {
     @IBOutlet private weak var firstLabel: UILabel!
     @IBOutlet private weak var secondLabel: UILabel!
     @IBOutlet private weak var thirdLabel: UILabel!
-    @IBOutlet weak var stackView: UIStackView!
-    @IBOutlet weak var firstView: UIView!
-    @IBOutlet weak var secondView: UIView!
-    @IBOutlet weak var thirdView: UIView!
+    @IBOutlet private weak var stackView: UIStackView!
+    @IBOutlet private weak var firstView: UIView!
+    @IBOutlet private weak var secondView: UIView!
+    @IBOutlet private weak var thirdView: UIView!
     
-    private var webView: WKWebView!
+    private var webView: WKWebView?
     var newsItems: RSSData?
     
     func beforeViewDidLoad() {
         super.loadView()
         
-        webView = WKWebView(frame: self.outerView.bounds, configuration: WKWebViewConfiguration())
+        let webView = WKWebView(frame: self.outerView.bounds, configuration: WKWebViewConfiguration())
+        self.webView = webView
         
         self.outerView.addSubview(webView)
+        webView.translatesAutoresizingMaskIntoConstraints = false
+        webView.topAnchor.constraint(equalTo: outerView.topAnchor).isActive = true
+        webView.bottomAnchor.constraint(equalTo: outerView.bottomAnchor).isActive = true
+        webView.leadingAnchor.constraint(equalTo: outerView.leadingAnchor).isActive = true
+        webView.trailingAnchor.constraint(equalTo: outerView.trailingAnchor).isActive = true
+        
         webView.uiDelegate = self
         
         self.title = newsItems?.title
@@ -38,11 +45,20 @@ class ContentViewController: UIViewController, WKUIDelegate {
         super.viewDidLoad()
         
         beforeViewDidLoad()
+        setLabel()
         
+        view.addSubview(stackView)
+        
+        guard let link = newsItems?.link, let url = URL(string: link) else { return }
+        let request = URLRequest(url: url)
+        webView?.load(request)
+    }
+    
+    func setLabel() {
         if newsItems?.keyword != nil {
-            firstView.layer.borderWidth = 1
-            secondView.layer.borderWidth = 1
-            thirdView.layer.borderWidth = 1
+            firstView.layer.borderWidth = 0.5
+            secondView.layer.borderWidth = 0.5
+            thirdView.layer.borderWidth = 0.5
             
             firstLabel.text = newsItems?.keyword?[0]
             secondLabel.text = newsItems?.keyword?[1]
@@ -52,23 +68,6 @@ class ContentViewController: UIViewController, WKUIDelegate {
             secondView.isHidden = true
             thirdView.isHidden = true
         }
-        
-        view.addSubview(stackView)
-        
-        let url = URL(string: newsItems?.link ?? "")
-        let request = URLRequest(url: url!)
-        webView.load(request)
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
