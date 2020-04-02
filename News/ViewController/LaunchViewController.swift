@@ -9,12 +9,8 @@
 import UIKit
 
 class LaunchViewController: UIViewController {
-    @IBOutlet private var outerView: UIView!
-    @IBOutlet private var mainImageView: UIImageView!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+    @IBOutlet private weak var outerView: UIView!
+    @IBOutlet private weak var mainImageView: UIImageView!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -26,7 +22,12 @@ class LaunchViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         outerView.layer.cornerRadius = outerView.bounds.width / 2
         outerView.layer.masksToBounds = true
+    }
+    
+    deinit {
+        print("LaunchViewController deinit")
     }
 }

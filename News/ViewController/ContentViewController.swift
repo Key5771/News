@@ -19,28 +19,18 @@ class ContentViewController: UIViewController, WKUIDelegate {
     @IBOutlet private weak var firstView: UIView!
     @IBOutlet private weak var secondView: UIView!
     @IBOutlet private weak var thirdView: UIView!
+    @IBOutlet weak var progressBar: UIProgressView!
     
     private var webView: WKWebView?
+    private var observation: NSKeyValueObservation?
     var newsItems: RSSData?
     
-    func beforeViewDidLoad() {
-        super.loadView()
-        
-        let webView = WKWebView(frame: self.outerView.bounds, configuration: WKWebViewConfiguration())
-        self.webView = webView
-        
-        self.outerView.addSubview(webView)
-        webView.translatesAutoresizingMaskIntoConstraints = false
-        webView.topAnchor.constraint(equalTo: outerView.topAnchor).isActive = true
-        webView.bottomAnchor.constraint(equalTo: outerView.bottomAnchor).isActive = true
-        webView.leadingAnchor.constraint(equalTo: outerView.leadingAnchor).isActive = true
-        webView.trailingAnchor.constraint(equalTo: outerView.trailingAnchor).isActive = true
-        
-        webView.uiDelegate = self
-        
-        self.title = newsItems?.title
+    deinit {
+        print("ContentViewController deinit")
+        observation = nil
     }
 
+    // MARK: - ViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -52,6 +42,35 @@ class ContentViewController: UIViewController, WKUIDelegate {
         guard let link = newsItems?.link, let url = URL(string: link) else { return }
         let request = URLRequest(url: url)
         webView?.load(request)
+    }
+    
+    // MARK: - initView
+    func beforeViewDidLoad() {
+        let webView = WKWebView(frame: self.outerView.bounds, configuration: WKWebViewConfiguration())
+        self.webView = webView
+        
+        observation = webView.observe(\.estimatedProgress, options: [.new]) { [weak self] (webView, change) in
+            DispatchQueue.main.async {
+                if let value = change.newValue {
+                    self?.progressBar.progress = Float(value)
+                    
+                    if value == 1 {
+                        self?.progressBar.isHidden = true
+                    }
+                }
+            }
+        }
+        
+        self.outerView.addSubview(webView)
+        webView.translatesAutoresizingMaskIntoConstraints = false
+        webView.topAnchor.constraint(equalTo: outerView.topAnchor).isActive = true
+        webView.bottomAnchor.constraint(equalTo: outerView.bottomAnchor).isActive = true
+        webView.leadingAnchor.constraint(equalTo: outerView.leadingAnchor).isActive = true
+        webView.trailingAnchor.constraint(equalTo: outerView.trailingAnchor).isActive = true
+        
+        webView.uiDelegate = self
+        
+        self.title = newsItems?.title
     }
     
     func setLabel() {

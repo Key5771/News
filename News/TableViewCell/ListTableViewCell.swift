@@ -16,7 +16,6 @@ class ListTableViewCell: UITableViewCell {
     @IBOutlet weak var secondLabel: UILabel!
     @IBOutlet weak var thirdLabel: UILabel!
     
-    
     var link: String?
     
     override func prepareForReuse() {
@@ -31,16 +30,4 @@ class ListTableViewCell: UITableViewCell {
         thirdLabel.text = nil
         
     }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
 }

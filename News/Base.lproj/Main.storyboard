@@ -186,6 +186,9 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1wK-0S-w63">
                                 <rect key="frame" x="0.0" y="128" width="414" height="734"/>
                             </view>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="sEX-bQ-dhi">
+                                <rect key="frame" x="0.0" y="128" width="414" height="2"/>
+                            </progressView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -193,9 +196,12 @@
                             <constraint firstItem="1wK-0S-w63" firstAttribute="trailing" secondItem="tty-z4-epk" secondAttribute="trailing" id="LL0-Sq-cD3"/>
                             <constraint firstItem="tty-z4-epk" firstAttribute="bottom" secondItem="1wK-0S-w63" secondAttribute="bottom" id="cWe-1W-kQS"/>
                             <constraint firstItem="tty-z4-epk" firstAttribute="trailing" secondItem="76V-Bk-NdO" secondAttribute="trailing" id="f1a-jv-Zge"/>
+                            <constraint firstItem="sEX-bQ-dhi" firstAttribute="leading" secondItem="Ww3-FS-Wgv" secondAttribute="leading" id="hv9-eT-vY1"/>
+                            <constraint firstAttribute="trailing" secondItem="sEX-bQ-dhi" secondAttribute="trailing" id="i3B-g4-apu"/>
                             <constraint firstItem="1wK-0S-w63" firstAttribute="leading" secondItem="tty-z4-epk" secondAttribute="leading" id="omb-x8-cGJ"/>
                             <constraint firstItem="76V-Bk-NdO" firstAttribute="top" secondItem="tty-z4-epk" secondAttribute="top" id="q6J-pD-91X"/>
                             <constraint firstItem="1wK-0S-w63" firstAttribute="top" secondItem="76V-Bk-NdO" secondAttribute="bottom" id="qqt-wo-PXf"/>
+                            <constraint firstItem="sEX-bQ-dhi" firstAttribute="top" secondItem="76V-Bk-NdO" secondAttribute="bottom" id="rKV-S2-28f"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="tty-z4-epk"/>
                     </view>
@@ -204,6 +210,7 @@
                         <outlet property="firstLabel" destination="DZq-X1-cdo" id="yWV-Ck-0Iq"/>
                         <outlet property="firstView" destination="OX6-Jv-j2K" id="gA9-nZ-4RL"/>
                         <outlet property="outerView" destination="1wK-0S-w63" id="6tL-Ej-mnU"/>
+                        <outlet property="progressBar" destination="sEX-bQ-dhi" id="sdC-Cz-Bjk"/>
                         <outlet property="secondLabel" destination="7QZ-wn-kWg" id="vye-I2-LwO"/>
                         <outlet property="secondView" destination="YUz-p1-tBE" id="Pd9-Rp-WJ8"/>
                         <outlet property="stackView" destination="76V-Bk-NdO" id="JWY-BJ-bwM"/>

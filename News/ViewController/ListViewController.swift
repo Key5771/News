@@ -11,31 +11,16 @@ import UIKit
 import Kingfisher
 
 class ListViewController: UIViewController {
-    @IBOutlet private var tableView: UITableView!
+    @IBOutlet private weak var tableView: UITableView!
     private let refreshController = UIRefreshControl()
     
-    var xmlParser = XMLParser()
-    var newsItems = [RSSData]()
-    let url = "https://news.google.com/rss"
-    var parse = Parse()
-    var htmlParser = HtmlParser()
-    var keyword = Keyword()
+    private var xmlParser = XMLParser()
+    private var newsItems = [RSSData]()
+    private let url = "https://news.google.com/rss"
+    private var parse = Parse()
+    private var htmlParser = HtmlParser()
     
-    func requestNewsInfo() {
-        DispatchQueue.global().async {
-            guard let url = URL(string: self.url),
-                let xmlParser = XMLParser(contentsOf: url) else { return }
-            
-            xmlParser.delegate = self.parse
-            xmlParser.parse()
-            self.newsItems = self.parse.getNewsItems()
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-                self.refreshController.endRefreshing()
-            }
-        }
-    }
-    
+    // MARK: - ViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         requestNewsInfo()
@@ -48,7 +33,7 @@ class ListViewController: UIViewController {
         self.title = "News"
     }
     
-    @objc func refresh() {
+    @objc private func refresh() {
         requestNewsInfo()
     }
     
@@ -64,8 +49,25 @@ class ListViewController: UIViewController {
             }
         }
     }
+    
+    // MARK: - XMLParsing
+    private func requestNewsInfo() {
+        DispatchQueue.global().async {
+            guard let url = URL(string: self.url),
+                let xmlParser = XMLParser(contentsOf: url) else { return }
+            
+            xmlParser.delegate = self.parse
+            xmlParser.parse()
+            self.newsItems = self.parse.getNewsItems()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                self.refreshController.endRefreshing()
+            }
+        }
+    }
 }
 
+// MARK: - UITableView
 extension ListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return newsItems.count
@@ -108,14 +110,15 @@ extension ListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard let cell = cell as? ListTableViewCell else { return }
         let url = newsItems[indexPath.row].link
-        guard newsItems[indexPath.row].imageAddress == nil && newsItems[indexPath.row].description == nil else { return }
+        guard newsItems[indexPath.row].imageAddress == nil
+            && newsItems[indexPath.row].description == nil else { return }
         
         htmlParser.sendRequest(url: url!) { (result: [String?]) in
             self.newsItems[indexPath.row].imageAddress = result[0]
             self.newsItems[indexPath.row].description = result[1]
             
             if let description = self.newsItems[indexPath.row].description {
-                self.newsItems[indexPath.row].keyword = self.keyword.getKeyword(str: description)
+                self.newsItems[indexPath.row].keyword = Keyword.getKeyword(str: description)
             }
             
             DispatchQueue.main.async {
